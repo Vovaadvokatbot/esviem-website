@@ -1,0 +1,10 @@
+﻿node_modules/
+.turbo/
+.next/
+dist/
+build/
+*.log
+.env
+.env.local
+.DS_Store
+desktop.ini
