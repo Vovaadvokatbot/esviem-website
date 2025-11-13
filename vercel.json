@@ -1,0 +1,19 @@
+{
+  "redirects": [
+    {
+      "source": "http://www.esviem.kiev.ua/:path*",
+      "destination": "https://esviem.kiev.ua/:path*",
+      "permanent": true
+    },
+    {
+      "source": "http://esviem.kiev.ua/:path*",
+      "destination": "https://esviem.kiev.ua/:path*",
+      "permanent": true
+    },
+    {
+      "source": "https://www.esviem.kiev.ua/:path*",
+      "destination": "https://esviem.kiev.ua/:path*",
+      "permanent": true
+    }
+  ]
+}
