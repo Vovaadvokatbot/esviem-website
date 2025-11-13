@@ -31,7 +31,7 @@ export default function Home() {
       <section className="py-24 bg-slate-50">
         <div className="max-w-6xl mx-auto px-6">
           
-          <h2 classname="text-4xl font-bold mb-12 text-slate-900">Наші послуги</h2>
+          <h2 className="text-4xl font-bold mb-12 text-slate-900">Наші послуги</h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
 
