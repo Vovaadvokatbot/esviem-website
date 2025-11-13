@@ -1,52 +1,60 @@
-﻿import Link from "next/link";
+"use client";
+
+import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function Home() {
   return (
-    <main style={{
-      minHeight: "100vh",
-      display: "grid",
-      placeItems: "center",
-      background: "linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#0ea5e9 100%)",
-      color: "white",
-      padding: "40px"
-    }}>
-      <div style={{
-        maxWidth: 960,
-        width: "100%",
-        background: "rgba(255,255,255,0.06)",
-        border: "1px solid rgba(255,255,255,0.12)",
-        borderRadius: 16,
-        padding: "40px"
-      }}>
-        <h1 style={{ margin: 0, fontSize: 48, lineHeight: 1.1 }}>ESVIEM Consulting</h1>
-        <p style={{ marginTop: 16, fontSize: 18, opacity: 0.9 }}>
-          Комплексні рішення для бізнесу: юридичний, фінансовий, будівельний та земельний консалтинг.
-          15+ років досвіду. Працюємо зі складними задачами та нестандартними кейсами.
-        </p>
-        <div style={{ marginTop: 24, display: "flex", gap: 12, flexWrap: "wrap" }}>
-          <Link href="#services" style={btn()}>Послуги</Link>
-          <Link href="#contacts" style={btn("ghost")}>Контакти</Link>
-        </div>
-        <div style={{ marginTop: 28, fontSize: 12, opacity: 0.8 }}>
-          Демоверсія для інвестора • Сьогоднішній білд
-        </div>
-      </div>
-    </main>
+    <div className="min-h-screen flex items-center justify-center p-8">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="bg-gray-900/80 backdrop-blur-sm rounded-2xl p-12 max-w-4xl w-full shadow-2xl"
+      >
+        <motion.h1
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
+          className="text-5xl md:text-6xl font-bold text-white text-center mb-6"
+        >
+          ESVIEM Consulting
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          className="text-lg md:text-xl text-gray-200 text-center mb-8 leading-relaxed"
+        >
+          Комплексні рішення для бізнесу: юридичний, фінансовий,
+          будівельний та земельний консалтинг. 15+ років досвіду. Ми
+          створюємо системи, що працюють.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.7 }}
+          className="flex flex-col sm:flex-row gap-4 justify-center"
+        >
+          <button className="px-8 py-4 bg-white text-gray-900 rounded-full font-semibold hover:bg-gray-100 transition-all transform hover:scale-105">
+            Послуги
+          </button>
+          <button className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-full font-semibold hover:bg-white/10 transition-all transform hover:scale-105">
+            Контакти
+          </button>
+        </motion.div>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.9 }}
+          className="text-center text-gray-300 mt-8 text-sm"
+        >
+          Демоверсія для інвестора • Professional Consulting Hub
+        </motion.p>
+      </motion.div>
+    </div>
   );
-}
-
-function btn(variant?: "ghost") {
-  const base = {
-    display: "inline-block",
-    padding: "12px 20px",
-    borderRadius: 12,
-    textDecoration: "none",
-    fontWeight: 600,
-    border: "1px solid rgba(255,255,255,0.2)"
-  } as React.CSSProperties;
-
-  if (variant === "ghost") {
-    return { ...base, background: "transparent", color: "white" };
-  }
-  return { ...base, background: "white", color: "#0f172a" };
 }
