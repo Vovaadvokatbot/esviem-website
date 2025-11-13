@@ -1,18 +1,15 @@
 {
   "redirects": [
     {
-      "source": "http://www.esviem.kiev.ua/:path*",
+      "source": "/:path*",
       "destination": "https://esviem.kiev.ua/:path*",
+      "has": [{ "type": "host", "value": "www.esviem.kiev.ua" }],
       "permanent": true
     },
     {
-      "source": "http://esviem.kiev.ua/:path*",
+      "source": "/:path*",
       "destination": "https://esviem.kiev.ua/:path*",
-      "permanent": true
-    },
-    {
-      "source": "https://www.esviem.kiev.ua/:path*",
-      "destination": "https://esviem.kiev.ua/:path*",
+      "has": [{ "type": "header", "key": "x-forwarded-proto", "value": "http" }],
       "permanent": true
     }
   ]
