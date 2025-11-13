@@ -1,161 +1,134 @@
-export default function HomePage() {
-  return (
-    <main className="min-h-screen bg-white text-slate-900">
+import Link from "next/link";
 
-      {/* ================= HERO ================= */}
-      <section className="bg-gradient-to-b from-slate-900 to-slate-800 text-white py-32 px-6">
-        <div className="max-w-5xl mx-auto text-center">
-          <h1 className="text-5xl font-bold mb-6 leading-tight">
+export default function Home() {
+  return (
+    <main className="bg-white">
+
+      {/* HERO */}
+      <section className="pt-32 pb-40 bg-gradient-to-b from-slate-900 to-slate-800 text-white">
+        <div className="max-w-6xl mx-auto px-6">
+
+          <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6">
             Комплексний консалтинг для бізнесу<br />
             <span className="text-blue-400">ESVIEM Consulting</span>
           </h1>
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto mb-10">
-            Юридичний, земельний, інвестиційний, будівельний та фінансовий супровід.
-            15+ років досвіду. Надійність, відповідальність, результат.
+
+          <p className="text-xl text-slate-300 max-w-3xl mb-10">
+            Юридичний, фінансовий, земельний та будівельний супровід проєктів.
+            15+ років досвіду. Робимо складне — простим. Гарантуємо результат.
           </p>
 
-          <div className="flex justify-center gap-6">
-            <a
-              href="/contact"
-              className="px-8 py-3 rounded-lg bg-blue-500 hover:bg-blue-600 text-white text-lg font-semibold transition">
-              Отримати консультацію
-            </a>
-            <a
-              href="/about"
-              className="px-8 py-3 rounded-lg border border-white/40 hover:bg-white hover:text-slate-900 text-lg font-semibold transition">
-              Про компанію
-            </a>
-          </div>
+          <Link
+            href="/contact"
+            className="px-10 py-3 bg-blue-600 hover:bg-blue-700 transition text-white text-lg rounded-lg font-semibold"
+          >
+            Отримати консультацію
+          </Link>
         </div>
       </section>
 
+      {/* SERVICES */}
+      <section className="py-24 bg-slate-50">
+        <div className="max-w-6xl mx-auto px-6">
+          
+          <h2 classname="text-4xl font-bold mb-12 text-slate-900">Наші послуги</h2>
 
-      {/* ================= SERVICES ================= */}
-      <section className="py-20 px-6 bg-slate-50">
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-12">Наші основні напрямки</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
 
-          <div className="grid md:grid-cols-4 gap-10">
+            <Link href="/services/land-consulting" className="p-6 bg-white shadow rounded-xl hover:shadow-lg transition border">
+              <h3 className="text-xl font-bold mb-2">Земельний консалтинг</h3>
+              <p className="text-slate-600">Аудит, документи, МУО, ТУ, ризики, цільове призначення.</p>
+            </Link>
 
-            <div className="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition">
-              <h3 className="text-xl font-semibold mb-2">Земельний консалтинг</h3>
-              <p className="text-slate-600">Документи, МУО, ТУ, аудит ділянок, зміна цільового призначення.</p>
-            </div>
+            <Link href="/services/construction-consulting" className="p-6 bg-white shadow rounded-xl hover:shadow-lg transition border">
+              <h3 className="text-xl font-bold mb-2">Будівельний супровід</h3>
+              <p className="text-slate-600">СС1-СС3, технічний аудит, акти, техпаспорти, введення в експлуатацію.</p>
+            </Link>
 
-            <div className="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition">
-              <h3 className="text-xl font-semibold mb-2">Будівельний консалтинг</h3>
-              <p className="text-slate-600">СС1/СС2/СС3, технічний аудит, введення в експлуатацію.</p>
-            </div>
+            <Link href="/services/financial-consulting" className="p-6 bg-white shadow rounded-xl hover:shadow-lg transition border">
+              <h3 className="text-xl font-bold mb-2">Фінансовий аудит</h3>
+              <p className="text-slate-600">Оптимізація бізнесу, аналіз руху коштів, фінансові моделі.</p>
+            </Link>
 
-            <div className="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition">
-              <h3 className="text-xl font-semibold mb-2">Фінансовий аудит</h3>
-              <p className="text-slate-600">Аналіз, фінмоделі, оптимізація витрат, підготовка до інвестицій.</p>
-            </div>
-
-            <div className="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition">
-              <h3 className="text-xl font-semibold mb-2">Юридичний супровід</h3>
-              <p className="text-slate-600">Спори, договори, due diligence, повний юридичний супровід.</p>
-            </div>
+            <Link href="/services/legal-consulting" className="p-6 bg-white shadow rounded-xl hover:shadow-lg transition border">
+              <h3 className="text-xl font-bold mb-2">Юридичний супровід</h3>
+              <p className="text-slate-600">Договори, спори, аудит, представництво та захист.</p>
+            </Link>
 
           </div>
         </div>
       </section>
 
+      {/* ABOUT */}
+      <section className="py-24 bg-white">
+        <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row gap-12">
 
-      {/* ================= WHY US ================= */}
-      <section className="py-20 px-6 bg-white">
-        <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-10">Чому саме ESVIEM?</h2>
+          <div className="flex-1">
+            <h2 className="text-4xl font-bold mb-6 text-slate-900">Про компанію</h2>
+            <p className="text-slate-600 leading-7 mb-6">
+              ESVIEM — це команда експертів з юридичного, фінансового,
+              земельного та будівельного консалтингу. Ми працюємо з
+              інвестиційними проєктами, приватними клієнтами та бізнесом різного масштабу.
+            </p>
+            <p className="text-slate-600 leading-7">
+              Наша місія — забезпечити повний та прогнозований супровід,
+              мінімізувати ризики та створювати рішення, що підсилюють бізнес.
+            </p>
+          </div>
+
+          <div className="flex-1 bg-slate-100 rounded-xl p-10 shadow text-slate-700">
+            <ul className="space-y-4 text-lg">
+              <li>✔ 15+ років досвіду</li>
+              <li>✔ Понад 400 успішних проєктів</li>
+              <li>✔ Повністю конфіденційний супровід</li>
+              <li>✔ Робота “під ключ”</li>
+              <li>✔ Оплата за результат</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* WHY US */}
+      <section className="py-24 bg-slate-900 text-white">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-4xl font-bold mb-12">Чому клієнти обирають нас?</h2>
 
           <div className="grid md:grid-cols-3 gap-10">
 
-            <div className="p-6 rounded-xl border">
-              <h3 className="text-xl font-semibold mb-2">15+ років досвіду</h3>
-              <p className="text-slate-600">Ми супроводжуємо бізнес у найскладніших питаннях.</p>
+            <div>
+              <h3 className="text-xl font-semibold mb-3">Точність і відповідальність</h3>
+              <p className="text-slate-300">Ми працюємо виключно на результат і не приймаємо “сірих” рішень.</p>
             </div>
 
-            <div className="p-6 rounded-xl border">
-              <h3 className="text-xl font-semibold mb-2">Комплексні рішення</h3>
-              <p className="text-slate-600">Юридично, фінансово, земельно та будівельно.</p>
+            <div>
+              <h3 className="text-xl font-semibold mb-3">Глибока експертиза</h3>
+              <p className="text-slate-300">Команда фахівців з юридичного, фінансового, земельного та будівельного права.</p>
             </div>
 
-            <div className="p-6 rounded-xl border">
-              <h3 className="text-xl font-semibold mb-2">Повна конфіденційність</h3>
-              <p className="text-slate-600">Ваша безпека та дані — наш абсолютний пріоритет.</p>
+            <div>
+              <h3 className="text-xl font-semibold mb-3">Прозорі умови</h3>
+              <p className="text-slate-300">Оплата лише після фактичного результату. Жодних прихованих витрат.</p>
             </div>
 
           </div>
         </div>
       </section>
 
-
-      {/* ================= ABOUT SHORT ================= */}
-      <section className="py-20 px-6 bg-slate-900 text-white">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-4xl font-bold mb-6">Про компанію</h2>
-          <p className="text-lg text-slate-300 max-w-3xl">
-            ESVIEM — це команда консультантів з більш ніж 15-річним досвідом у юридичному,
-            фінансовому, земельному та будівельному супроводі бізнесу. Ми пропонуємо рішення,
-            які скорочують ризики, оптимізують процеси та захищають інтереси клієнтів.
-          </p>
-
-          <a
-            href="/about"
-            className="inline-block mt-8 px-8 py-3 rounded-lg bg-blue-500 hover:bg-blue-600 text-white text-lg font-semibold transition">
-            Детальніше
-          </a>
-        </div>
-      </section>
-
-
-      {/* ================= CASES ================= */}
-      <section className="py-20 px-6 bg-slate-50">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12 text-center">Реальні кейси</h2>
-
-          <div className="grid md:grid-cols-3 gap-10">
-
-            <div className="p-6 bg-white shadow rounded-xl">
-              <h3 className="font-semibold text-lg mb-2">Земельний аудит</h3>
-              <p className="text-slate-600 text-sm">Зміна цільового призначення + ТУ за 42 дні.</p>
-            </div>
-
-            <div className="p-6 bg-white shadow rounded-xl">
-              <h3 className="font-semibold text-lg mb-2">Введення в експлуатацію</h3>
-              <p className="text-slate-600 text-sm">Комерційна будівля — успішно з першого подання.</p>
-            </div>
-
-            <div className="p-6 bg-white shadow rounded-xl">
-              <h3 className="font-semibold text-lg mb-2">Фінансовий аудит</h3>
-              <p className="text-slate-600 text-sm">+27% прибутку за 30 днів.</p>
-            </div>
-
-          </div>
-
-          <div className="text-center mt-10">
-            <a
-              href="/portfolio"
-              className="px-8 py-3 rounded-lg bg-slate-900 hover:bg-slate-700 text-white text-lg font-semibold transition">
-              Переглянути всі кейси
-            </a>
-          </div>
-        </div>
-      </section>
-
-
-      {/* ================= CTA CONTACT ================= */}
-      <section className="py-20 px-6 bg-blue-600 text-white text-center">
-        <h2 className="text-4xl font-bold mb-4">Потрібна допомога експертів?</h2>
-        <p className="text-lg text-blue-100 mb-8">
-          Ми готові взяти ваш проект під повний супровід.
+      {/* CTA */}
+      <section className="py-24 bg-blue-600 text-white text-center">
+        <h2 className="text-4xl font-bold mb-6">Готові розпочати співпрацю?</h2>
+        <p className="text-xl text-blue-100 mb-10">
+          Залиште заявку — ми зв’яжемося з вами та запропонуємо оптимальний формат співпраці.
         </p>
 
-        <a
+        <Link
           href="/contact"
-          className="px-10 py-4 rounded-lg bg-white text-blue-600 font-bold text-lg hover:bg-blue-200 transition">
-          Зв’язатись з нами
-        </a>
+          className="px-12 py-4 bg-white text-blue-700 rounded-lg font-bold text-lg hover:bg-slate-100 transition"
+        >
+          Залишити заявку
+        </Link>
       </section>
+
     </main>
   );
 }
