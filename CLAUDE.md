@@ -38,6 +38,9 @@
 - **Monorepo Tool**: Turborepo v2.6
 - **Workspace**: apps/* and packages/*
 
+### Analytics & Monitoring
+- **Vercel Speed Insights**: ^1.2.0 (root dependency)
+
 ---
 
 ## Project Structure
@@ -51,9 +54,9 @@ esviem-website/
 │   │   │   ├── about/           # About page
 │   │   │   ├── contact/         # Contact page with form
 │   │   │   ├── api/             # Next.js API routes
+│   │   │   ├── globals.css      # Global styles with Tailwind
 │   │   │   └── layout.tsx       # Root layout
-│   │   ├── app/                 # LEGACY duplicate (avoid)
-│   │   ├── public/              # Static assets
+│   │   ├── app/                 # LEGACY duplicate (contains sitemap.ts, page.tsx, layout.tsx)
 │   │   ├── next.config.mjs      # Web app Next.js config
 │   │   ├── tailwind.config.js   # Tailwind configuration
 │   │   ├── tsconfig.json        # TypeScript config (@/* → src/*)
@@ -74,13 +77,17 @@ esviem-website/
 │       └── schema.prisma        # PostgreSQL schema (not integrated)
 │
 ├── content/                      # Markdown content files
-├── public/                       # Root-level static assets
+├── public/                       # Root-level static assets (city-background.jpg, og-image.png, robots.txt)
 ├── .github/workflows/           # CI/CD workflows
 ├── .vercel/                      # Vercel deployment config
-│   └── build-config.json        # Build commands for Vercel
-├── turbo.json                    # Turborepo configuration
+│   ├── build-config.json        # Build commands for Vercel
+│   └── project.json             # Project and org IDs
+├── turbo.json                    # Turborepo configuration (v2.6 schema)
 ├── pnpm-workspace.yaml          # Workspace definition
+├── pnpm-lock.yaml               # Lockfile
 ├── docker-compose.yml           # Production Docker setup
+├── CLAUDE.md                    # This file - AI assistant guide
+├── SECURITY.md                  # Security policy
 └── package.json                 # Root workspace configuration
 ```
 
@@ -89,8 +96,9 @@ esviem-website/
 **IMPORTANT DUPLICATIONS TO BE AWARE OF:**
 
 1. **Two App Directories in apps/web:**
-   - `apps/web/src/app/` - **ACTIVE** (use this for all changes)
-   - `apps/web/app/` - Legacy/duplicate (avoid)
+   - `apps/web/src/app/` - **ACTIVE** (use this for all page changes and new features)
+   - `apps/web/app/` - Legacy/duplicate (contains: page.tsx, layout.tsx, sitemap.ts)
+   - **Note**: The sitemap.ts file is currently in the legacy directory
 
 2. **Multiple Next.js Configs:**
    - `apps/web/next.config.mjs` - **PRIMARY** (web app specific)
@@ -246,8 +254,10 @@ Current flow (from contact form):
 
 ### CI/CD
 
-- **GitHub Actions**: Webpack build workflow (nodejs 18, 20, 22)
-- **Note**: Workflow appears misaligned with actual build system (uses webpack, should use Turbo)
+- **GitHub Actions**: Webpack build workflow in `.github/workflows/webpack.yml`
+- **Node Versions**: Tests on 18.x, 20.x, 22.x
+- **CRITICAL ISSUE**: Workflow uses `npm install` and `npx webpack` instead of `pnpm` and Turbo/Next.js
+- **Recommendation**: Update workflow to use `pnpm install` and `pnpm --filter web build`
 
 ---
 
@@ -274,13 +284,15 @@ Current flow (from contact form):
    - Two `app/` directories in web project
    - Multiple Next.js config files
 
-3. **Missing Pages** (linked but not implemented):
+3. **Missing Pages** (referenced in sitemap but not implemented):
+   - `/services` - Parent services page
    - `/services/land-consulting`
    - `/services/construction-consulting`
    - `/services/financial-consulting`
    - `/services/legal-consulting`
    - `/portfolio`
    - `/faq`
+   - **Note**: These URLs are defined in `apps/web/app/sitemap.ts` for SEO purposes
 
 4. **CI/CD Misalignment**
    - GitHub Actions workflow uses webpack instead of Turbo/Next.js
@@ -319,6 +331,7 @@ Current flow (from contact form):
 - About: `apps/web/src/app/about/page.tsx`
 - Contact: `apps/web/src/app/contact/page.tsx`
 - Root Layout: `apps/web/src/app/layout.tsx`
+- Sitemap: `apps/web/app/sitemap.ts` (in legacy directory)
 
 **API Routes:**
 - Contact API: `apps/web/src/app/api/contact/route.ts`
@@ -387,9 +400,12 @@ pnpm dev:api
 
 ## SEO and Metadata
 
-**Sitemap**: Generated via `apps/web/src/app/sitemap.ts`
+**Sitemap**: Generated via `apps/web/app/sitemap.ts` (TypeScript function returning MetadataRoute.Sitemap)
+**Sitemap URLs**: Includes all current and planned pages (home, about, services, portfolio, faq, contact)
 **Metadata**: Centralized in root layout and page-specific metadata exports
 **Language**: `<html lang="uk">` for Ukrainian
+**OG Image**: `public/og-image.png`
+**Robots**: `public/robots.txt`
 
 ---
 
@@ -433,12 +449,24 @@ This is a **pnpm monorepo** with:
 5. Keep all text in Ukrainian
 
 **Watch out for:**
-- Duplicate app directories (use `src/app`)
+- Duplicate app directories (use `src/app` for new pages, sitemap is in `app/`)
 - Multiple Next.js configs (use `apps/web/next.config.mjs`)
 - Database not connected (Prisma schema exists but unused)
-- Missing service detail pages (linked but not created)
+- Missing service detail pages (referenced in sitemap but not created)
+- GitHub Actions workflow needs updating (uses npm/webpack instead of pnpm/Turbo)
+- No apps/web/public directory (static assets are in root-level public/)
+
+---
+
+## Repository Statistics
+
+- **Total TypeScript Files**: 9 in apps directory
+- **Implemented Pages**: 3 (home, about, contact)
+- **Planned Pages**: 6 (services parent + 4 service types, portfolio, faq)
+- **Active Development Branch**: claude/claude-md-mhyjdslqho4mh5yg-01WWv7n4bTmLUGX4FvujW7ng
 
 ---
 
 *Last Updated: 2025-11-14*
 *Generated by: Claude AI Assistant*
+*Version: 2.0 - Verified against actual repository structure*
