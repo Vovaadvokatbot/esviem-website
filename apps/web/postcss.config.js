@@ -1,7 +1,7 @@
 // apps/web/postcss.config.js
 module.exports = {
   plugins: {
-    '@tailwindcss/postcss': {}, // ← используем новый пакет
+    'tailwindcss': {}, // используем tailwindcss пакет
     autoprefixer: {},
   },
 };
